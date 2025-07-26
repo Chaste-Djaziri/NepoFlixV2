@@ -1,0 +1,39 @@
+User-agent: *
+Allow: /
+
+# Allow all main pages
+Allow: /home
+Allow: /movies
+Allow: /tv
+Allow: /search
+Allow: /watchlist
+Allow: /ios
+
+# Allow static pages
+Allow: /about.html
+Allow: /contact.html
+Allow: /faq.html
+Allow: /support.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /disclaimer.html
+
+# Disallow private/API routes
+Disallow: /e/
+Disallow: /api/
+Disallow: /backend/
+Disallow: /testing/
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /internal/
+
+# Crawl delay (optional - be respectful to server)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://nepoflix.micorp.pro/sitemap.xml
