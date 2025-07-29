@@ -1,56 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchTmdb, getTmdbImage, formatReleaseDate, getContentRating, isInWatchlist, toggleWatchlist } from '../../utils.jsx';
-import { Play, ThumbsUp, Plus, Info } from 'lucide-react';
 import { toast } from 'sonner';
-import CarouselItem from '../../components/carouselItem.jsx';
 import Header from '../../components/Header.jsx';
-import { SpotlightSkeleton, CategorySkeleton } from '../../components/Skeletons.jsx';
-import config from '../../config.json';
+import { SpotlightSkeleton, MediaCardSkeleton, CategorySkeleton } from '../../components/Skeletons.jsx';
+import { fetchTmdbAnime, getTmdbImage, formatReleaseDate, isInWatchlist, toggleWatchlist } from '../../utils.jsx';
 
-const { tmdbBaseUrl } = config;
-
-const tvCategories = [
+const animeCategories = [
   {
-    title: 'Comedy',
-    url: `${tmdbBaseUrl}/discover/tv?with_genres=35&language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl,
-    updateHero: true
+    title: 'Latest Anime',
+    url: 'latest',
+    detailUrl: 'latest'
   },
   {
-    title: 'Drama',
-    url: `${tmdbBaseUrl}/discover/tv?with_genres=18&language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl,
+    title: 'Popular Anime',
+    url: 'popular',
+    detailUrl: 'popular'
   },
   {
-    title: 'Crime',
-    url: `${tmdbBaseUrl}/discover/tv?with_genres=80&language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl
+    title: 'Top Rated Anime',
+    url: 'top_rated',
+    detailUrl: 'top_rated'
   },
   {
-    title: 'Sci-Fi & Fantasy',
-    url: `${tmdbBaseUrl}/discover/tv?with_genres=10765&language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl
+    title: 'Airing This Week',
+    url: 'airing_this_week',
+    detailUrl: 'airing_this_week'
   },
   {
-    title: 'Action & Adventure',
-    url: `${tmdbBaseUrl}/discover/tv?with_genres=10759&language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl
-  },
-  {
-    title: 'Animation',
-    url: `${tmdbBaseUrl}/discover/tv?with_genres=16&language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl
-  },
-  {
-    title: 'Airing Today',
-    url: `${tmdbBaseUrl}/tv/airing_today?language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl
-  },
-  {
-    title: 'On The Air',
-    url: `${tmdbBaseUrl}/tv/on_the_air?language=en-US&page=1&append_to_response=images,content_ratings&include_image_language=en`,
-    detailUrl: tmdbBaseUrl
+    title: 'Upcoming Anime',
+    url: 'upcoming',
+    detailUrl: 'upcoming'
   }
 ];
 
@@ -68,14 +47,14 @@ const SpotlightSection = ({ item, isLoading }) => {
   
   const backgroundImage = getTmdbImage(item.backdrop_path) || getTmdbImage(item.poster_path);
   const logoImage = item.images?.logos?.find(logo => logo.iso_639_1 === 'en')?.file_path;
-  const mediaType = item.title ? 'movie' : 'tv';
+  const mediaType = 'tv'; // Anime are TV shows
   
   const handleWatchlistToggle = (e) => {
     e.stopPropagation();
     const isAdded = toggleWatchlist(item);
     setInWatchlist(isAdded);
   };
-
+  
   const handleWatchClick = () => { navigate(`/${mediaType}/${item.id}?watch=1`); };
   const handleInfoClick = () => { navigate(`/${mediaType}/${item.id}`); };
   const handleLikeClick = () => { toast(`Liked ${item.title || item.name}`); };
@@ -101,11 +80,10 @@ const SpotlightSection = ({ item, isLoading }) => {
           <div className="bg-gradient-to-r from-[#90cea1] to-[#01b4e4] text-black px-1 py-[1px] rounded font-black tracking-tighter text-sm">TMDB</div>
           <span className="text-neutral-300">{item.vote_average?.toFixed(1) || '8.0'}</span>
           <span className="text-neutral-300">•</span>
-          <span className="text-neutral-300">{formatReleaseDate(item.release_date || item.first_air_date)}</span>
+          <span className="text-neutral-300">{formatReleaseDate(item.first_air_date)}</span>
           <span className="text-neutral-300">•</span>
           <span className="text-neutral-300">
-            {item.runtime ? `${Math.floor(item.runtime / 60)}h ${item.runtime % 60}m` : 
-             item.number_of_seasons ? `${item.number_of_seasons} seasons` : '0-100 seasons'}
+            {item.number_of_seasons ? `${item.number_of_seasons} seasons` : '0-100 seasons'}
           </span>
           <span className="text-neutral-300">•</span>
           <span className="text-green-400">100% match</span>
@@ -118,39 +96,30 @@ const SpotlightSection = ({ item, isLoading }) => {
         
         {/* Action buttons */}
         <div className="flex flex-col md:flex-row mb-4 w-full md:justify-between items-center gap-4 animate-fade-in-delayed-4">
-          <div className="flex items-center gap-2 justify-center">
-            <button onClick={handleWatchClick} className="bg-white text-black px-6 py-2 rounded-full font-semibold text-lg flex items-center gap-2 hover:bg-neutral-200 transition-all cursor-pointer">
-              <Play className="w-6 h-6" fill="currentColor" />
-              Watch now
+          <div className="flex gap-2">
+            <button onClick={handleWatchClick} className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-colors flex items-center gap-2">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+              </svg>
+              Watch
             </button>
-            <button onClick={handleInfoClick} className="bg-white/15 text-white p-2.5 rounded-full hover:bg-white/25 transition-all cursor-pointer">
-              <Info className="w-6 h-6" />
-            </button>
-            <button onClick={handleLikeClick} className="bg-white/15 text-white p-2.5 rounded-full hover:bg-white/25 transition-all cursor-pointer">
-              <ThumbsUp className="w-6 h-6" />
-            </button>
-            <button 
-              onClick={handleWatchlistToggle}
-              className={`text-white p-2.5 rounded-full transition-all cursor-pointer ${inWatchlist ? 'bg-white/25' : 'bg-white/15 hover:bg-white/25'}`}
-            >
-              <Plus className="w-6 h-6" />
+            <button onClick={handleInfoClick} className="bg-gray-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-700 transition-colors">
+              More Info
             </button>
           </div>
-          <div className="hidden md:flex items-center gap-2">
-            <span className="bg-white/15 text-white p-2 pl-3 pr-12 font-light">{getContentRating(item)}</span>
+          
+          <div className="flex gap-2">
+            <button onClick={handleWatchlistToggle} className={`p-2 rounded-full ${inWatchlist ? 'bg-blue-500 text-white' : 'bg-gray-600 text-white hover:bg-gray-700'} transition-colors`}>
+              <svg className="w-5 h-5" fill={inWatchlist ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+              </svg>
+            </button>
+            <button onClick={handleLikeClick} className="p-2 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
           </div>
-        </div>
-        
-        {/* Genre tags */}
-        <div className="flex gap-2 text-neutral-600 text-sm mb-3 animate-fade-in-delayed-5 justify-center md:justify-start">
-          {
-            item.genres.slice(0, 3).map((genre, index) => (
-              <React.Fragment key={genre.id}>
-                <span>{genre.name}</span>
-                {index < Math.min(item.genres.length - 1, 2) && <span>•</span>}
-              </React.Fragment>
-            ))
-          }
         </div>
       </div>
     </div>
@@ -305,7 +274,7 @@ const CategorySection = ({ title, items, isLoading: categoryLoading }) => {
   );
 };
 
-const Tv = () => {
+const Anime = () => {
   const [spotlightItem, setSpotlightItem] = useState(null);
   const [categoryData, setCategoryData] = useState({});
   const [error, setError] = useState(null);
@@ -315,32 +284,34 @@ const Tv = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const promises = tvCategories.map(async (category) => {
-          const route = category.url.replace(category.detailUrl, '');
-          const data = await fetchTmdb(route);
+        console.log('Loading anime data...');
+        
+        // First, try to get the latest anime for spotlight
+        const latestData = await fetchTmdbAnime(1);
+        console.log('Latest anime data received:', latestData.results?.length || 0, 'items');
+        
+        if (latestData.results && latestData.results.length > 0) {
+          const heroItem = latestData.results[0];
+          setSpotlightItem(heroItem);
+          setSpotlightLoading(false);
+        } else {
+          setSpotlightLoading(false);
+        }
+        
+        // Load anime data for different categories
+        const promises = animeCategories.map(async (category, index) => {
+          console.log(`Fetching ${category.title} (page ${index + 1})`);
+          const data = await fetchTmdbAnime(index + 1); // Use different pages for variety
+          console.log(`${category.title} received:`, data.results?.length || 0, 'items');
           return { ...category, data: data.results || [] };
         });
 
         const results = await Promise.all(promises);
+        console.log('All anime data loaded:', results);
         const newCategoryData = {};
         
         results.forEach((result) => {
           newCategoryData[result.title] = result.data;
-          
-          // Set spotlight item from trending TV shows with detailed data
-          if (result.updateHero && result.data.length > 0) {
-            const heroItem = result.data[0];
-            const detailRoute = `/tv/${heroItem.id}?language=en-US&append_to_response=images,content_ratings&include_image_language=en`;
-            
-            fetchTmdb(detailRoute).then(detailedItem => {
-              setSpotlightItem(detailedItem);
-              setSpotlightLoading(false);
-            }).catch(err => {
-              console.error('Error fetching detailed hero data:', err);
-              setSpotlightItem(heroItem);
-              setSpotlightLoading(false);
-            });
-          }
         });
         
         setCategoryData(newCategoryData);
@@ -349,7 +320,7 @@ const Tv = () => {
         setError(err.message);
         setIsLoading(false);
         setSpotlightLoading(false);
-        console.error('Error loading data:', err);
+        console.error('Error loading anime data:', err);
       }
     };
 
@@ -359,7 +330,15 @@ const Tv = () => {
   if (error) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-red-500 text-xl">Error: {error}</div>
+        <div className="text-red-500 text-xl">
+          <div>Error: {error}</div>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
@@ -368,10 +347,16 @@ const Tv = () => {
     <div className="min-h-screen bg-[#090a0a] pb-12 md:pb-0">
       <Header />
       
+      {isLoading && !spotlightItem && (
+        <div className="flex items-center justify-center h-[80vh]">
+          <div className="text-white text-xl">Loading anime...</div>
+        </div>
+      )}
+      
       <SpotlightSection item={spotlightItem} isLoading={spotlightLoading} />
       
       <div className="px-8 py-8 space-y-8">
-        {tvCategories.map((category, index) => {
+        {animeCategories.map((category, index) => {
           const items = categoryData[category.title] || [];
           return (
             <div key={category.title} className="animate-stagger" style={{animationDelay: `${index * 200}ms`}}>
@@ -388,4 +373,4 @@ const Tv = () => {
   );
 };
 
-export default Tv;
+export default Anime; 

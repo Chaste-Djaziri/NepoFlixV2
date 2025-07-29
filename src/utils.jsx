@@ -44,6 +44,50 @@ export const fetchTmdb = async (route) => {
   } catch (error) { console.error('Error fetching TMDB data:', error); throw error }
 };
 
+// Fetch anime data with specific filtering
+export const fetchTmdbAnime = async (page = 1) => {
+  try {
+    const today = new Date().toISOString().split("T")[0];
+    // Use animation genre (16) and filter by origin_country to get Japanese anime
+    const url = `${tmdbBaseUrl}/discover/tv?with_genres=16&with_origin_country=JP&sort_by=first_air_date.desc&first_air_date.lte=${today}&page=${page}&language=en-US`;
+    
+    console.log('Fetching anime data from:', url);
+    
+    const response = await fetch(url, {
+      headers: {'Authorization': tmdbApiKey, 'Content-Type': 'application/json'}
+    });
+    
+    if (!response.ok) { 
+      console.error('TMDB API error:', response.status, response.statusText);
+      throw new Error(`HTTP error! status: ${response.status}`) 
+    }
+    
+    const data = await response.json();
+    console.log('Anime data received:', data.results?.length || 0, 'items');
+    
+    // If no results, try a fallback approach
+    if (!data.results || data.results.length === 0) {
+      console.log('No results with JP filter, trying without origin country filter...');
+      const fallbackUrl = `${tmdbBaseUrl}/discover/tv?with_genres=16&sort_by=first_air_date.desc&first_air_date.lte=${today}&page=${page}&language=en-US`;
+      
+      const fallbackResponse = await fetch(fallbackUrl, {
+        headers: {'Authorization': tmdbApiKey, 'Content-Type': 'application/json'}
+      });
+      
+      if (fallbackResponse.ok) {
+        const fallbackData = await fallbackResponse.json();
+        console.log('Fallback anime data received:', fallbackData.results?.length || 0, 'items');
+        return fallbackData;
+      }
+    }
+    
+    return data;
+  } catch (error) { 
+    console.error('Error fetching TMDB anime data:', error); 
+    throw error 
+  }
+};
+
 // get tmdb image url
 export const getTmdbImage = (path, size = 'original') => {
   if (!path) return null;

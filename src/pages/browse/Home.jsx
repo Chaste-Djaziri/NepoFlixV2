@@ -150,72 +150,156 @@ const SpotlightSection = ({ item, isLoading }) => {
 };
 
 const MediaCard = ({ item, isContinueWatching = false }) => {
-  const [isMobile, setIsMobile] = useState(false);
+  const [inWatchlist, setInWatchlist] = useState(false);
+  const navigate = useNavigate();
   
   useEffect(() => {
-    const checkMobile = () => { setIsMobile(window.innerWidth < 768); };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+    if (item && item.id) { setInWatchlist(isInWatchlist(item.id)); }
+  }, [item]);
   
-  if (isContinueWatching) { return <CarouselItem item={item} variant="continue" usePoster={isMobile} />; }
+  const handleWatchlistToggle = (e) => {
+    e.stopPropagation();
+    const isAdded = toggleWatchlist(item);
+    setInWatchlist(isAdded);
+  };
+  
+  const handleClick = () => {
+    const mediaType = item.title ? 'movie' : 'tv';
+    navigate(`/${mediaType}/${item.id}`);
+  };
+
+  if (isContinueWatching) { 
+    return <CarouselItem item={item} variant="continue" />; 
+  }
   
   return (
-    <div className="flex-shrink-0 w-40 md:w-96 cursor-pointer animate-scale-in">
-      <CarouselItem item={item} usePoster={isMobile} />
+    <div className="relative group cursor-pointer animate-scale-in" onClick={handleClick}>
+      <div className="relative overflow-hidden rounded-lg">
+        <img 
+          src={getTmdbImage(item.poster_path, 'w500')} 
+          alt={item.title || item.name} 
+          className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+        
+        {/* Watchlist button */}
+        <button 
+          onClick={handleWatchlistToggle}
+          className={`absolute top-2 right-2 p-1 rounded-full transition-all duration-200 ${
+            inWatchlist 
+              ? 'bg-blue-500 text-white' 
+              : 'bg-black/50 text-white hover:bg-black/70'
+          }`}
+        >
+          <svg className="w-4 h-4" fill={inWatchlist ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+          </svg>
+        </button>
+      </div>
+      
+      <div className="mt-2">
+        <h3 className="text-white font-semibold text-sm line-clamp-1">{item.title || item.name}</h3>
+        <div className="flex items-center gap-2 text-xs text-gray-400">
+          <span>{formatReleaseDate(item.release_date || item.first_air_date)}</span>
+          <span>•</span>
+          <span>{item.vote_average?.toFixed(1) || 'N/A'}</span>
+        </div>
+      </div>
     </div>
   );
 };
 
 const CategorySection = ({ title, items, isLoading: categoryLoading, isContinueWatching = false }) => {
-  const [visibleItems, setVisibleItems] = useState(4);
-  const [isLoading, setIsLoading] = useState(false);
-  const scrollContainerRef = React.useRef(null);
-
-  const handleScroll = (e) => {
-    const container = e.target;
-    const { scrollLeft, scrollWidth, clientWidth } = container;
-    
-    // check if user has scrolled near the end (within 200px)
-    if (scrollLeft + clientWidth >= scrollWidth - 200 && !isLoading && visibleItems < items.length) {
-      setIsLoading(true);
-      
-      // load 4 more items
-      setVisibleItems(prev => Math.min(prev + 4, items.length));
-      setIsLoading(false);
+  const containerRef = React.useRef(null);
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(false);
+  
+  const checkScrollButtons = () => {
+    const container = containerRef.current;
+    if (container) {
+      setShowLeftButton(container.scrollLeft > 0);
+      setShowRightButton(
+        container.scrollLeft < container.scrollWidth - container.clientWidth - 10
+      );
     }
   };
-
-  const displayedItems = items.slice(0, visibleItems);
+  
+  const scrollLeft = () => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollBy({
+        left: -400,
+        behavior: 'smooth'
+      });
+    }
+  };
+  
+  const scrollRight = () => {
+    const container = containerRef.current;
+    if (container) {
+      container.scrollBy({
+        left: 400,
+        behavior: 'smooth'
+      });
+    }
+  };
+  
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      checkScrollButtons();
+      container.addEventListener('scroll', checkScrollButtons);
+      return () => container.removeEventListener('scroll', checkScrollButtons);
+    }
+  }, [items]);
 
   if (categoryLoading) {
     return <CategorySkeleton title={title} />;
   }
 
   return (
-    <div className="mb-8 animate-slide-up">
-      <h2 className="text-2xl text-white mb-1">{title}</h2>
-      <div 
-        ref={scrollContainerRef}
-        className="flex space-x-4 overflow-x-auto scrollbar-hide py-4 pl-4 -ml-4"
-        onScroll={handleScroll}
-      >
-        {displayedItems.map((item, index) => {
-          const key = isContinueWatching ? `${item.id}-${item.mediaType}-${item.season || 0}-${item.episode || 0}` : item.id;
-          return (
-            <div key={key} className="animate-stagger" style={{animationDelay: `${index * 100}ms`}}>
-              <MediaCard item={item} isContinueWatching={isContinueWatching} />
-            </div>
-          );
-        })}
-        {isLoading && (
-          <div className="flex-shrink-0 w-96 h-56 flex items-center justify-center">
-            <div className="w-8 h-8 border-2 border-white border-solid border-t-transparent rounded-full animate-spin"></div>
-          </div>
+    <div className="space-y-4 relative">
+      <h2 className="text-2xl font-bold text-white">{title}</h2>
+      <div className="relative">
+        {/* Left scroll button - hidden on mobile */}
+        {showLeftButton && (
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/80 hover:bg-black text-white p-2 rounded-full shadow-lg transition-all duration-200 hidden md:flex items-center justify-center w-10 h-10"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
         )}
+        
+        {/* Right scroll button - hidden on mobile */}
+        {showRightButton && (
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/80 hover:bg-black text-white p-2 rounded-full shadow-lg transition-all duration-200 hidden md:flex items-center justify-center w-10 h-10"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
+        
+        <div 
+          ref={containerRef}
+          className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-4 scroll-smooth"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {items.map((item) => {
+            const key = isContinueWatching ? `${item.id}-${item.mediaType}-${item.season || 0}-${item.episode || 0}` : item.id;
+            return (
+              <div key={key} className="flex-shrink-0 w-32 md:w-48">
+                <MediaCard item={item} isContinueWatching={isContinueWatching} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

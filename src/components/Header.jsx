@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Film, Bookmark, Home, Tv, Download } from 'lucide-react';
+import { Search, Film, Bookmark, Home, Tv, Download, Play } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Header = () => {
@@ -73,7 +73,9 @@ const Header = () => {
           <Link to="/tv" className={`px-4 py-2 rounded-lg hover:bg-white hover:text-black ${
             isActive('/tv') ? 'bg-white/20 text-white' : 'text-gray-200'
           }`}>TV Shows</Link>
-          <button onClick={() => toast('Anime is under development. Coming soon!')} className="px-4 py-2 rounded-lg text-gray-200 line-through">Anime</button>
+          <Link to="/anime" className={`px-4 py-2 rounded-lg hover:bg-white hover:text-black ${
+            isActive('/anime') ? 'bg-white/20 text-white' : 'text-gray-200'
+          }`}>Anime</Link>
         </div>
         <div className="flex gap-2">
           <Link to="/search" className={`p-2 rounded-full hover:bg-white hover:text-black ${
@@ -98,6 +100,10 @@ const Header = () => {
         <Link to="/tv" className={`flex flex-col items-center ${
           isActive('/tv') ? 'text-white' : 'text-zinc-400 hover:text-white'
         }`}><Tv className="w-6 h-6" /><span className="text-xs mt-1">TV</span></Link>
+
+        <Link to="/anime" className={`flex flex-col items-center ${
+          isActive('/anime') ? 'text-white' : 'text-zinc-400 hover:text-white'
+        }`}><Play className="w-6 h-6" /><span className="text-xs mt-1">Anime</span></Link>
 
         <Link to="/search" className={`flex flex-col items-center ${
           isActive('/search') ? 'text-white' : 'text-zinc-400 hover:text-white'
