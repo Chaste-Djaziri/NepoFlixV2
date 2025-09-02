@@ -4,6 +4,7 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     PROTECTED_PATHS: z.string(),
+    SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_TMDB_ACCESS_TOKEN: z.string().min(1),
