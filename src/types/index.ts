@@ -53,6 +53,7 @@ export interface SiteConfigType {
   socials: {
     github: string;
     twitter: string;
+    instagram: string;
   };
 }
 

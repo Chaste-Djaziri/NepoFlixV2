@@ -130,6 +130,7 @@ export const siteConfig: SiteConfigType = {
   socials: {
     github: "https://github.com/wisnuwirayuda15/cinextma",
     twitter: "https://twitter.com/YourHandle",
+    instagram: "https://twitter.com/YourHandle",
   },
 };
 
