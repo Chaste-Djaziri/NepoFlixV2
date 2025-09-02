@@ -16,7 +16,7 @@ export default function Brand() {
     <div>
       <Link href="/" className={Saira.className} style={{ fontWeight: 600, fontSize: 30 }}>
         <span className="flex items-center tracking-widest">
-          Pop{" "}
+          Nepo{" "}
           <span>
             <Next
               className={cn("size-full px-[2px] transition-colors", {
@@ -25,7 +25,7 @@ export default function Brand() {
               })}
             />
           </span>{" "}
-          Stream
+          Flix
         </span>
       </Link>
     </div>
