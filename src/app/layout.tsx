@@ -17,8 +17,8 @@ import dynamic from "next/dynamic";
 const Disclaimer = dynamic(() => import("@/components/ui/overlay/Disclaimer"));
 
 export const metadata: Metadata = {
-  title: "Pop Stream",
-  applicationName: "Pop Stream",
+  title: "NepoFlix",
+  applicationName: "NepoFlix",
   description: "A cool free movies streaming platform",
   manifest: "/manifest.json",
   icons: { icon: siteConfig.favicon },
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "Pop Stream",
-    title: { default: "Pop Stream", template: "Free streaming site" },
+    siteName: "NepoFlix",
+    title: { default: "NepoFlix", template: "Free streaming site" },
     description: "Free streaming site",
   },
   formatDetection: { telephone: false },
