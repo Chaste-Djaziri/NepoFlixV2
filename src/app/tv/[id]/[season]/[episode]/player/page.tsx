@@ -1,3 +1,5 @@
+// src/app/tv/[id]/[season]/[episode]/player/page.tsx
+
 "use client";
 
 import { tmdb } from "@/api/tmdb";

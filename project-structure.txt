@@ -1,0 +1,337 @@
+├── public/
+│   ├── icons/
+│   │   ├── android/
+│   │   │   ├── android-launchericon-144-144.png (7.4 KB)
+│   │   │   ├── android-launchericon-192-192.png (10.5 KB)
+│   │   │   ├── android-launchericon-48-48.png (2.4 KB)
+│   │   │   ├── android-launchericon-512-512.png (37.8 KB)
+│   │   │   ├── android-launchericon-72-72.png (3.7 KB)
+│   │   │   └── android-launchericon-96-96.png (5.0 KB)
+│   │   ├── ios/
+│   │   │   ├── 100.png (5.1 KB)
+│   │   │   ├── 1024.png (109.6 KB)
+│   │   │   ├── 114.png (5.9 KB)
+│   │   │   ├── 120.png (6.0 KB)
+│   │   │   ├── 128.png (6.5 KB)
+│   │   │   ├── 144.png (7.4 KB)
+│   │   │   ├── 152.png (8.0 KB)
+│   │   │   ├── 16.png (0.6 KB)
+│   │   │   ├── 167.png (9.0 KB)
+│   │   │   ├── 180.png (9.7 KB)
+│   │   │   ├── 192.png (10.5 KB)
+│   │   │   ├── 20.png (0.8 KB)
+│   │   │   ├── 256.png (14.5 KB)
+│   │   │   ├── 29.png (1.4 KB)
+│   │   │   ├── 32.png (1.5 KB)
+│   │   │   ├── 40.png (2.0 KB)
+│   │   │   ├── 50.png (2.6 KB)
+│   │   │   ├── 512.png (37.8 KB)
+│   │   │   ├── 57.png (2.9 KB)
+│   │   │   ├── 58.png (2.9 KB)
+│   │   │   ├── 60.png (2.9 KB)
+│   │   │   ├── 64.png (3.2 KB)
+│   │   │   ├── 72.png (3.7 KB)
+│   │   │   ├── 76.png (3.8 KB)
+│   │   │   ├── 80.png (4.1 KB)
+│   │   │   └── 87.png (4.4 KB)
+│   │   └── windows/
+│   │       ├── LargeTile.scale-100.png (18.1 KB)
+│   │       ├── LargeTile.scale-125.png (25.4 KB)
+│   │       ├── LargeTile.scale-150.png (32.9 KB)
+│   │       ├── LargeTile.scale-200.png (50.4 KB)
+│   │       ├── LargeTile.scale-400.png (149.2 KB)
+│   │       ├── SmallTile.scale-100.png (3.7 KB)
+│   │       ├── SmallTile.scale-125.png (4.4 KB)
+│   │       ├── SmallTile.scale-150.png (5.4 KB)
+│   │       ├── SmallTile.scale-200.png (7.5 KB)
+│   │       ├── SmallTile.scale-400.png (16.5 KB)
+│   │       ├── SplashScreen.scale-100.png (19.0 KB)
+│   │       ├── SplashScreen.scale-125.png (26.0 KB)
+│   │       ├── SplashScreen.scale-150.png (32.8 KB)
+│   │       ├── SplashScreen.scale-200.png (49.1 KB)
+│   │       ├── SplashScreen.scale-400.png (150.1 KB)
+│   │       ├── Square150x150Logo.scale-100.png (7.8 KB)
+│   │       ├── Square150x150Logo.scale-125.png (9.9 KB)
+│   │       ├── Square150x150Logo.scale-150.png (12.3 KB)
+│   │       ├── Square150x150Logo.scale-200.png (17.5 KB)
+│   │       ├── Square150x150Logo.scale-400.png (45.6 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-16.png (0.7 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-20.png (1.0 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-24.png (1.3 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-256.png (17.1 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-30.png (1.6 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-32.png (1.8 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-36.png (2.1 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-40.png (2.3 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-44.png (2.5 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-48.png (2.8 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-60.png (3.5 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-64.png (3.6 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-72.png (4.2 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-80.png (4.7 KB)
+│   │       ├── Square44x44Logo.altform-lightunplated_targetsize-96.png (5.6 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-16.png (0.7 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-20.png (1.0 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-24.png (1.3 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-256.png (17.1 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-30.png (1.6 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-32.png (1.8 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-36.png (2.1 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-40.png (2.3 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-44.png (2.5 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-48.png (2.8 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-60.png (3.5 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-64.png (3.6 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-72.png (4.2 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-80.png (4.7 KB)
+│   │       ├── Square44x44Logo.altform-unplated_targetsize-96.png (5.6 KB)
+│   │       ├── Square44x44Logo.scale-100.png (2.5 KB)
+│   │       ├── Square44x44Logo.scale-125.png (3.1 KB)
+│   │       ├── Square44x44Logo.scale-150.png (3.8 KB)
+│   │       ├── Square44x44Logo.scale-200.png (4.9 KB)
+│   │       ├── Square44x44Logo.scale-400.png (10.8 KB)
+│   │       ├── Square44x44Logo.targetsize-16.png (0.7 KB)
+│   │       ├── Square44x44Logo.targetsize-20.png (1.0 KB)
+│   │       ├── Square44x44Logo.targetsize-24.png (1.3 KB)
+│   │       ├── Square44x44Logo.targetsize-256.png (17.1 KB)
+│   │       ├── Square44x44Logo.targetsize-30.png (1.6 KB)
+│   │       ├── Square44x44Logo.targetsize-32.png (1.8 KB)
+│   │       ├── Square44x44Logo.targetsize-36.png (2.1 KB)
+│   │       ├── Square44x44Logo.targetsize-40.png (2.3 KB)
+│   │       ├── Square44x44Logo.targetsize-44.png (2.5 KB)
+│   │       ├── Square44x44Logo.targetsize-48.png (2.8 KB)
+│   │       ├── Square44x44Logo.targetsize-60.png (3.5 KB)
+│   │       ├── Square44x44Logo.targetsize-64.png (3.6 KB)
+│   │       ├── Square44x44Logo.targetsize-72.png (4.2 KB)
+│   │       ├── Square44x44Logo.targetsize-80.png (4.7 KB)
+│   │       ├── Square44x44Logo.targetsize-96.png (5.6 KB)
+│   │       ├── StoreLogo.scale-100.png (2.6 KB)
+│   │       ├── StoreLogo.scale-125.png (3.1 KB)
+│   │       ├── StoreLogo.scale-150.png (3.7 KB)
+│   │       ├── StoreLogo.scale-200.png (5.1 KB)
+│   │       ├── StoreLogo.scale-400.png (10.9 KB)
+│   │       ├── Wide310x150Logo.scale-100.png (8.2 KB)
+│   │       ├── Wide310x150Logo.scale-125.png (10.6 KB)
+│   │       ├── Wide310x150Logo.scale-150.png (13.2 KB)
+│   │       ├── Wide310x150Logo.scale-200.png (19.0 KB)
+│   │       └── Wide310x150Logo.scale-400.png (49.1 KB)
+│   └── manifest.json (14.4 KB)
+├── src/
+│   ├── api/
+│   │   └── tmdb.ts (0.3 KB)
+│   ├── app/
+│   │   ├── about/
+│   │   │   └── page.tsx (0.9 KB)
+│   │   ├── actions/
+│   │   │   └── histories.ts (5.3 KB)
+│   │   ├── api/
+│   │   │   ├── auth/
+│   │   │   │   ├── callback/
+│   │   │   │   │   └── route.ts (3.2 KB)
+│   │   │   │   └── confirm/
+│   │   │   │       └── route.ts (0.8 KB)
+│   │   │   └── player/
+│   │   │       └── save-history/
+│   │   │           └── route.ts (0.7 KB)
+│   │   ├── auth/
+│   │   │   ├── reset-password/
+│   │   │   │   └── page.tsx (0.2 KB)
+│   │   │   ├── actions.ts (5.8 KB)
+│   │   │   └── page.tsx (0.4 KB)
+│   │   ├── discover/
+│   │   │   └── page.tsx (0.5 KB)
+│   │   ├── library/
+│   │   │   ├── actions.ts (9.2 KB)
+│   │   │   └── page.tsx (1.0 KB)
+│   │   ├── movie/
+│   │   │   └── [id]/
+│   │   │       ├── player/
+│   │   │       │   └── page.tsx (1.2 KB)
+│   │   │       └── page.tsx (2.0 KB)
+│   │   ├── search/
+│   │   │   └── page.tsx (0.5 KB)
+│   │   ├── tv/
+│   │   │   └── [id]/
+│   │   │       ├── [season]/
+│   │   │       │   └── [episode]/
+│   │   │       │       └── player/
+│   │   │       │           └── page.tsx (2.6 KB)
+│   │   │       └── page.tsx (2.5 KB)
+│   │   ├── favicon.ico (4.2 KB)
+│   │   ├── layout.tsx (2.3 KB)
+│   │   ├── not-found.tsx (0.5 KB)
+│   │   ├── page.tsx (0.6 KB)
+│   │   └── providers.tsx (1.9 KB)
+│   ├── components/
+│   │   ├── sections/
+│   │   │   ├── About/
+│   │   │   │   └── FAQ.tsx (3.1 KB)
+│   │   │   ├── Auth/
+│   │   │   │   ├── ForgotPassword.tsx (2.9 KB)
+│   │   │   │   ├── Forms.tsx (5.2 KB)
+│   │   │   │   ├── Login.tsx (4.6 KB)
+│   │   │   │   ├── Register.tsx (5.1 KB)
+│   │   │   │   └── ResetPassword.tsx (3.4 KB)
+│   │   │   ├── Discover/
+│   │   │   │   ├── Filters.tsx (1.6 KB)
+│   │   │   │   ├── ListGroup.tsx (0.5 KB)
+│   │   │   │   ├── MovieList.tsx (2.7 KB)
+│   │   │   │   └── TvShowList.tsx (2.7 KB)
+│   │   │   ├── Home/
+│   │   │   │   ├── Cards/
+│   │   │   │   │   └── Resume.tsx (3.5 KB)
+│   │   │   │   ├── ContinueWatching.tsx (1.2 KB)
+│   │   │   │   └── List.tsx (0.9 KB)
+│   │   │   ├── Library/
+│   │   │   │   └── List.tsx (9.4 KB)
+│   │   │   ├── Movie/
+│   │   │   │   ├── Cards/
+│   │   │   │   │   ├── Hover.tsx (4.6 KB)
+│   │   │   │   │   └── Poster.tsx (5.5 KB)
+│   │   │   │   ├── Detail/
+│   │   │   │   │   ├── Backdrop.tsx (1.7 KB)
+│   │   │   │   │   ├── Casts.tsx (1.2 KB)
+│   │   │   │   │   ├── Overview.tsx (4.3 KB)
+│   │   │   │   │   ├── Related.tsx (1.3 KB)
+│   │   │   │   │   └── RelatedList.tsx (0.6 KB)
+│   │   │   │   ├── Player/
+│   │   │   │   │   ├── ActionButton.tsx (1.1 KB)
+│   │   │   │   │   ├── Header.tsx (1.3 KB)
+│   │   │   │   │   ├── Player.tsx (2.7 KB)
+│   │   │   │   │   └── SourceSelection.tsx (2.6 KB)
+│   │   │   │   └── HomeList.tsx (2.1 KB)
+│   │   │   ├── Search/
+│   │   │   │   ├── Filter.tsx (1.5 KB)
+│   │   │   │   ├── History.tsx (0.9 KB)
+│   │   │   │   └── List.tsx (5.5 KB)
+│   │   │   └── TV/
+│   │   │       ├── Cards/
+│   │   │       │   ├── Hover.tsx (4.5 KB)
+│   │   │       │   └── Poster.tsx (5.5 KB)
+│   │   │       ├── Details/
+│   │   │       │   ├── Backdrop.tsx (1.7 KB)
+│   │   │       │   ├── Casts.tsx (1.2 KB)
+│   │   │       │   ├── Episodes.tsx (8.1 KB)
+│   │   │       │   ├── Overview.tsx (4.7 KB)
+│   │   │       │   ├── Related.tsx (1.4 KB)
+│   │   │       │   ├── RelatedList.tsx (0.7 KB)
+│   │   │       │   └── Seasons.tsx (3.7 KB)
+│   │   │       ├── Player/
+│   │   │       │   ├── ActionButton.tsx (1.1 KB)
+│   │   │       │   ├── EpisodeSelection.tsx (1.1 KB)
+│   │   │       │   ├── Header.tsx (2.5 KB)
+│   │   │       │   ├── Player.tsx (3.5 KB)
+│   │   │       │   └── SourceSelection.tsx (2.5 KB)
+│   │   │       └── HomeList.tsx (2.1 KB)
+│   │   └── ui/
+│   │       ├── background/
+│   │       │   └── ThreeDMarquee.tsx (5.3 KB)
+│   │       ├── button/
+│   │       │   ├── BackButton.tsx (0.3 KB)
+│   │       │   ├── BackToTopButton.tsx (0.9 KB)
+│   │       │   ├── BookmarkButton.tsx (4.6 KB)
+│   │       │   ├── CopyButton.tsx (1.3 KB)
+│   │       │   ├── FullscreenToggleButton.tsx (0.8 KB)
+│   │       │   ├── GoogleLoginButton.tsx (1.7 KB)
+│   │       │   ├── IconButton.tsx (0.8 KB)
+│   │       │   ├── ShareButton.tsx (3.1 KB)
+│   │       │   └── UserProfileButton.tsx (3.0 KB)
+│   │       ├── input/
+│   │       │   ├── GenresSelect.tsx (1.5 KB)
+│   │       │   ├── PasswordInput.tsx (3.4 KB)
+│   │       │   ├── SearchInput.tsx (1.7 KB)
+│   │       │   ├── SelectButton.tsx (3.9 KB)
+│   │       │   └── ThemeSwitchDropdown.tsx (1.6 KB)
+│   │       ├── layout/
+│   │       │   ├── BottomNavbar.tsx (1.8 KB)
+│   │       │   ├── Footer.tsx (1.2 KB)
+│   │       │   ├── Sidebar.tsx (0.9 KB)
+│   │       │   └── TopNavbar.tsx (2.5 KB)
+│   │       ├── notice/
+│   │       │   └── Unauthorized.tsx (0.8 KB)
+│   │       ├── other/
+│   │       │   ├── BrandLogo.tsx (1.3 KB)
+│   │       │   ├── ContentTypeSelection.tsx (1.5 KB)
+│   │       │   ├── Genres.tsx (0.7 KB)
+│   │       │   ├── Loop.tsx (0.8 KB)
+│   │       │   ├── NavbarMenuItems.tsx (1.4 KB)
+│   │       │   ├── PhotosSection.tsx (2.4 KB)
+│   │       │   ├── PosterCardSkeleton.tsx (0.9 KB)
+│   │       │   ├── Rating.tsx (0.5 KB)
+│   │       │   └── SectionTitle.tsx (1.5 KB)
+│   │       ├── overlay/
+│   │       │   ├── AdsWarning.tsx (2.5 KB)
+│   │       │   ├── ConfirmationModal.tsx (1.3 KB)
+│   │       │   ├── Disclaimer.tsx (5.0 KB)
+│   │       │   ├── Gallery.tsx (0.8 KB)
+│   │       │   ├── Trailer.tsx (4.8 KB)
+│   │       │   └── VaulDrawer.tsx (4.2 KB)
+│   │       └── wrapper/
+│   │           └── Carousel.tsx (3.0 KB)
+│   ├── config/
+│   │   └── site.tsx (3.9 KB)
+│   ├── hooks/
+│   │   ├── useBreakpoints.ts (1.0 KB)
+│   │   ├── useCustomCarousel.ts (1.9 KB)
+│   │   ├── useDeviceVibration.ts (1.2 KB)
+│   │   ├── useDiscoverFilters.ts (2.1 KB)
+│   │   ├── useExtractColors.ts (10.7 KB)
+│   │   ├── useFetchDiscoverMovies.ts (1.2 KB)
+│   │   ├── useFetchDiscoverTvShow.ts (1.2 KB)
+│   │   ├── useSupabaseUser.ts (1.8 KB)
+│   │   └── useVidlinkPlayer.ts (4.6 KB)
+│   ├── public/
+│   │   └── img/
+│   │       └── mockup.png (952.0 KB)
+│   ├── schemas/
+│   │   └── auth.ts (1.7 KB)
+│   ├── styles/
+│   │   ├── embla-carousel.module.css (0.2 KB)
+│   │   ├── globals.css (1.3 KB)
+│   │   └── lightbox.css (1.4 KB)
+│   ├── types/
+│   │   ├── component.ts (1.3 KB)
+│   │   ├── index.ts (1.4 KB)
+│   │   └── movie.ts (0.9 KB)
+│   ├── utils/
+│   │   ├── supabase/
+│   │   │   ├── client.ts (0.3 KB)
+│   │   │   ├── middleware.ts (1.9 KB)
+│   │   │   ├── server.ts (1.1 KB)
+│   │   │   └── types.ts (8.4 KB)
+│   │   ├── constants.ts (0.9 KB)
+│   │   ├── env.ts (0.9 KB)
+│   │   ├── fonts.ts (0.3 KB)
+│   │   ├── helpers.ts (4.3 KB)
+│   │   ├── icons.ts (2.1 KB)
+│   │   ├── movies.ts (7.6 KB)
+│   │   ├── parsers.ts (0.3 KB)
+│   │   ├── players.ts (6.0 KB)
+│   │   └── settings.ts (0.2 KB)
+│   └── middleware.ts (0.6 KB)
+├── supabase/
+│   ├── migrations/
+│   │   ├── 20250829145019_remote_schema.sql (5.7 KB)
+│   │   ├── 20250829163622_init_declarative_schema.sql (3.3 KB)
+│   │   ├── 20250829171711_add_tv_show_progress.sql (1.4 KB)
+│   │   ├── 20250830105542_fix_conflic_on_histories_table.sql (0.5 KB)
+│   │   ├── 20250830112656_fix_duplicate_items_on_histories_table.sql (0.5 KB)
+│   │   ├── 20250830135731_add_media_metadata_to_histories_table.sql (1.7 KB)
+│   │   └── 20250830150004_auto_increment_id_on_histories_table.sql (0.2 KB)
+│   ├── schemas/
+│   │   ├── 01_profiles.sql (0.7 KB)
+│   │   ├── 02_watchlist.sql (1.0 KB)
+│   │   └── 03_histories.sql (2.0 KB)
+│   ├── templates/
+│   │   ├── confirmation.html (8.0 KB)
+│   │   └── recovery.html (10.0 KB)
+│   └── config.toml (13.1 KB)
+├── CONTRIBUTING.md (0.5 KB)
+├── LICENSE (1.1 KB)
+├── next.config.mjs (0.5 KB)
+├── package-lock.json (551.3 KB)
+├── package.json (2.3 KB)
+├── postcss.config.mjs (0.1 KB)
+├── README.md (4.3 KB)
+├── tailwind.config.ts (1.3 KB)
+└── tsconfig.json (0.7 KB)

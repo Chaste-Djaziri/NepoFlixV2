@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 import withPWAInit from "@ducanh2912/next-pwa";
+import { hostname } from "os";
 
 const withPWA = withPWAInit({
   dest: "public",
@@ -18,6 +19,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false
   },
+  images: {
+    domains: ["image.tmdb.org"],
+  }
 };
 
 const pwa = withPWA(nextConfig);
