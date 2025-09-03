@@ -59,7 +59,7 @@ const SearchInput = ({
       labelPlacement="outside"
       endContent={<Kbd className="hidden md:inline-block">CTRL+K</Kbd>}
       startContent={
-        <div className="pointer-events-none flex flex-shrink-0 items-center pr-1 text-default-400">
+        <div className="pointer-events-none flex shrink-0 items-center pr-1 text-default-400">
           {isLoading ? <Spinner color="default" size="sm" /> : <FaSearch />}
         </div>
       }

@@ -8,7 +8,7 @@ interface TvShowRelatedListProps {
 
 const TvShowRelatedList: React.FC<TvShowRelatedListProps> = ({ tvs }) => {
   return (
-    <div className="z-[3] flex flex-col gap-2">
+    <div className="z-3 flex flex-col gap-2">
       <Carousel>
         {tvs.map((tv) => {
           return (

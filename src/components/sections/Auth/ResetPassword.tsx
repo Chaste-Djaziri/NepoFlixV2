@@ -73,7 +73,6 @@ const AuthResetPasswordForm: React.FC = () => {
         Please enter your new password to continue your streaming journey
       </p>
       <PasswordInput
-        withStrengthMeter
         {...register("password")}
         value={watch("password")}
         isInvalid={!!errors.password?.message}

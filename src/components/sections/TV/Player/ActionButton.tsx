@@ -26,7 +26,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         onClick={onClick}
         disabled={disabled}
         className={cn("group drop-shadow-md [&>svg]:transition-all", {
-          "[&>svg]:hover:scale-125 [&>svg]:hover:text-warning": !disabled,
+          "hover:[&>svg]:scale-125 [&>svg]:hover:text-warning": !disabled,
           "cursor-not-allowed opacity-50": disabled,
         })}
       >

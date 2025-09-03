@@ -55,13 +55,13 @@ const TvShowHoverCard: React.FC<{ id: number; fullWidth?: boolean }> = ({ id, fu
     >
       <div className="relative">
         <div className="absolute aspect-video h-fit w-full">
-          <div className="absolute z-[2] h-full w-full bg-gradient-to-t from-secondary-background from-[1%]"></div>
+          <div className="absolute z-2 h-full w-full bg-linear-to-t from-secondary-background from-1%"></div>
           {!isEmpty(titleImage) && (
             <Image
               isBlurred
               radius="none"
               alt={fullTitle}
-              classNames={{ wrapper: "absolute-center z-[1] bg-transparent" }}
+              classNames={{ wrapper: "absolute-center z-1 bg-transparent" }}
               className="h-full max-h-32 w-full drop-shadow-xl"
               src={titleImage}
             />

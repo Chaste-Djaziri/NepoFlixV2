@@ -4,7 +4,7 @@ import MoviePosterCard from "@/components/sections/Movie/Cards/Poster";
 
 const RelatedMovieList: React.FC<{ movies: Movie[] }> = ({ movies }) => {
   return (
-    <div className="z-[3] flex flex-col gap-2">
+    <div className="z-3 flex flex-col gap-2">
       <Carousel>
         {movies.map((movie) => {
           return (

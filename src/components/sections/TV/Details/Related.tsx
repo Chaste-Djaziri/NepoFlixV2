@@ -14,7 +14,7 @@ const TvShowRelatedSection: React.FC<TvShowRelatedSectionProps> = ({ tv }) => {
   const similar = tv.similar.results as TV[];
 
   return (
-    <section id="related" className="z-[3]">
+    <section id="related" className="z-3">
       <SectionTitle color="warning" className="mb-2 sm:mb-0 sm:translate-y-10">
         You may like
       </SectionTitle>

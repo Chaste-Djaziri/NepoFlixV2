@@ -27,7 +27,7 @@ const TvShowPlayerHeader: React.FC<TvShowPlayerHeaderProps> = ({
       aria-hidden={hidden ? true : undefined}
       className={cn(
         "absolute top-0 z-40 flex h-28 w-full items-start justify-between gap-4",
-        "bg-gradient-to-b from-black/80 to-transparent p-2 text-white transition-opacity md:p-4",
+        "bg-linear-to-b from-black/80 to-transparent p-2 text-white transition-opacity md:p-4",
         { "opacity-0": hidden },
       )}
     >
@@ -35,10 +35,8 @@ const TvShowPlayerHeader: React.FC<TvShowPlayerHeaderProps> = ({
         <ArrowLeft size={42} />
       </ActionButton>
       <div className="absolute left-1/2 hidden -translate-x-1/2 flex-col justify-center text-center sm:flex">
-        <p className="text-shadow-sm text-sm text-white text-shadow-blur-md sm:text-lg lg:text-xl">
-          {seriesName}
-        </p>
-        <p className="text-shadow-sm text-xs text-gray-200 text-shadow-blur-md sm:text-sm lg:text-base">
+        <p className="text-sm text-white text-shadow-lg sm:text-lg lg:text-xl">{seriesName}</p>
+        <p className="text-xs text-gray-200 text-shadow-lg sm:text-sm lg:text-base">
           {seasonName} - {episode.name}
         </p>
       </div>

@@ -18,8 +18,8 @@ const BrandLogo: React.FC<BrandLogoProps> = ({ animate = false, className }) => 
     <Link href="/" className="group">
       <span
         className={cn(
-          "flex items-center bg-gradient-to-r from-transparent from-80% via-white to-transparent bg-[length:200%_100%] bg-clip-text bg-[40%] text-2xl font-semibold text-foreground/60 md:text-3xl",
-          "tracking-[0.1em] transition-[letter-spacing] group-hover:tracking-[0.2em]",
+          "flex items-center bg-linear-to-r from-transparent from-80% via-white to-transparent bg-size-[200%_100%] bg-clip-text bg-position-[40%] text-2xl font-semibold text-foreground/60 md:text-3xl",
+          "tracking-widest transition-[letter-spacing] group-hover:tracking-[0.2em]",
           {
             "animate-shine": animate,
             "text-foreground": !animate,

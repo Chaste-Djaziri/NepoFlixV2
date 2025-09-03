@@ -50,21 +50,21 @@ export default function VaulDrawer({
       )}
       <Drawer.Portal>
         <Drawer.Overlay
-          className={cn("fixed inset-0 z-[9998] bg-black/70", classNames?.overlay, {
-            "backdrop-blur-sm": backdrop === "blur",
+          className={cn("fixed inset-0 z-9998 bg-black/70", classNames?.overlay, {
+            "backdrop-blur-xs": backdrop === "blur",
             "bg-transparent": backdrop === "transparent",
           })}
         />
         <Drawer.Content
           className={cn(
-            "fixed z-[9999] place-self-center bg-secondary-background text-foreground outline-none",
+            "bg-secondary-background text-foreground fixed z-9999 place-self-center outline-hidden",
             classNames?.contentWrapper,
             {
-              "bottom-0 left-0 right-0 mt-24 max-h-[97%] w-full rounded-t-2xl":
+              "right-0 bottom-0 left-0 mt-24 max-h-[97%] w-full rounded-t-2xl":
                 direction === "bottom",
-              "left-0 right-0 top-0 mb-24 max-h-[97%] w-full rounded-b-2xl": direction === "top",
-              "bottom-0 right-0 top-0 h-full w-full rounded-l-2xl": direction === "right",
-              "bottom-0 left-0 top-0 h-full w-full rounded-r-2xl": direction === "left",
+              "top-0 right-0 left-0 mb-24 max-h-[97%] w-full rounded-b-2xl": direction === "top",
+              "top-0 right-0 bottom-0 h-full w-full rounded-l-2xl": direction === "right",
+              "top-0 bottom-0 left-0 h-full w-full rounded-r-2xl": direction === "left",
               "md:w-max": !fullWidth && (direction === "bottom" || direction === "top"),
               "md:max-w-lg": !fullWidth && (direction === "right" || direction === "left"),
               "w-full": fullWidth,
@@ -73,7 +73,7 @@ export default function VaulDrawer({
         >
           <div
             className={cn(
-              "relative flex h-full flex-col space-y-5 pb-6 pt-4",
+              "relative flex h-full flex-col space-y-5 pt-4 pb-6",
               classNames?.content,
               {
                 "rounded-t-2xl": direction === "bottom",
@@ -89,7 +89,7 @@ export default function VaulDrawer({
                 aria-label="Close"
                 radius="full"
                 variant="light"
-                className="absolute right-3 top-3"
+                className="absolute top-3 right-3"
                 size="sm"
                 onPress={props.onClose}
               >
@@ -99,7 +99,7 @@ export default function VaulDrawer({
             {!hiddenHandler && (
               <div
                 className={cn(
-                  "mx-auto h-1.5 w-12 flex-shrink-0 rounded-full bg-foreground/50",
+                  "bg-foreground/50 mx-auto h-1.5 w-12 shrink-0 rounded-full",
                   classNames?.handler,
                 )}
               />

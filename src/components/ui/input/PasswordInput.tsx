@@ -77,10 +77,10 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
         {meter && withStrengthMeter && (
           <div
             className={cn(
-              "absolute z-[100] w-full rounded-medium border-2 border-foreground-200 bg-secondary-background p-4 shadow-lg",
+              "absolute z-100 w-full rounded-medium border-2 border-foreground-200 bg-secondary-background p-4 shadow-lg",
               {
                 "top-[5.3rem]": props.isInvalid,
-                "top-[4.5rem]": !props.isInvalid,
+                "top-18": !props.isInvalid,
               },
             )}
           >

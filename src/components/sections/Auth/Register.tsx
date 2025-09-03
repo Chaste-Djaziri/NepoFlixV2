@@ -97,7 +97,6 @@ const AuthRegisterForm: React.FC<AuthFormProps> = ({ setForm }) => {
           isDisabled={isSubmitting || isVerifying}
         />
         <PasswordInput
-          withStrengthMeter
           value={watch("password")}
           {...register("password")}
           isInvalid={!!errors.password?.message}

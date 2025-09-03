@@ -46,14 +46,14 @@ export const TvShowOverviewSection: React.FC<TvShowOverviewSectionProps> = ({
   useDocumentTitle(`${fullTitle} | ${siteConfig.name}`);
 
   return (
-    <section id="overview" className="relative z-[3] flex flex-col gap-8 pt-[20vh] md:pt-[40vh]">
-      <div className="md:grid md:grid-cols-[auto,1fr] md:gap-6">
+    <section id="overview" className="relative z-3 flex flex-col gap-8 pt-[20vh] md:pt-[40vh]">
+      <div className="md:grid md:grid-cols-[auto_1fr] md:gap-6">
         <Image
           isBlurred
           shadow="md"
           alt={fullTitle}
           classNames={{
-            wrapper: "w-52 max-h-min aspect-[2/3] hidden md:block",
+            wrapper: "w-52 max-h-min aspect-2/3 hidden md:block",
           }}
           className="object-cover object-center"
           src={posterImage}

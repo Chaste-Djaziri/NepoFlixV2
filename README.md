@@ -17,13 +17,14 @@
 - **📂 Personal Library**: Users can build their own personalized library of favorite movies and TV shows, making it easy to keep track of what they've watched and want to watch.
 - **💻📱 Responsive UI**: The platform's user interface is designed to be responsive and accessible across various devices, ensuring a consistent and enjoyable experience on desktops, tablets, and mobile devices.
 - **📲 Progressive Web App**: The platform is designed to be installable on devices and provide native-like features, ensuring a seamless and engaging experience for users.
+- **🙍‍♂️ User Account**: Users can create an account to access personalized features, such as a watchlist and history.
 
 ## Other Features
 
 - **📺 TV Shows** (Finished)
-- **🙍‍♂️ User Account** (Work in Progress)
+- **🙍‍♂️ User Account** (Finished)
 - **🏆 Achievements System** (Planned)
-- **⚙️ Personal Settings** (Planned)
+- **⚙️ Personal Settings** (Work in Progress)
 - **🌐 Social Features** (Planned)
 
 ## Technologies Used
@@ -31,11 +32,12 @@
 CINEXTMA is built using the following technologies:
 
 - **Next.js 15 App Router**: The application leverages the latest version of Next.js, which includes the new App Router, providing a more intuitive and powerful development experience.
-- **Tailwind CSS**: The user interface is styled using the Tailwind CSS utility-first CSS framework, ensuring a visually appealing and responsive design.
+- **Tailwind CSS 4**: The user interface is styled using the Tailwind CSS utility-first CSS framework, ensuring a visually appealing and responsive design.
 - **Next UI**: The project utilizes the Next UI library, which provides a set of high-quality, customizable React components that integrate seamlessly with Tailwind CSS.
 - **TypeScript**: The codebase is written in TypeScript, ensuring better type safety, developer productivity, and maintainability.
 - **TanStack Query**: The application uses the TanStack Query library for efficient data fetching and caching, providing a smooth and responsive user experience.
 - **The Movie Database (TMDB) API**: CINEXTMA integrates with the TMDB API to retrieve movie and TV show data, ensuring access to a vast and up-to-date content library.
+- **Supabase**: The project uses Supabase for user authentication and database management.
 
 ## Getting Started
 

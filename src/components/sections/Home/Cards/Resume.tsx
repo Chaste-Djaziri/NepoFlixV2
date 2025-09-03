@@ -36,7 +36,7 @@ const ResumeCard: React.FC<ResumeCardProps> = ({ media }) => {
           )}
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+            <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 opacity-0 backdrop-blur-xs transition-opacity group-hover:opacity-100">
               <PlayOutline className="h-6 w-6 text-white" />
             </div>
           </div>
@@ -69,9 +69,9 @@ const ResumeCard: React.FC<ResumeCardProps> = ({ media }) => {
             color={media.type === "movie" ? "primary" : "warning"}
             value={(media.last_position / media.duration) * 100}
           />
-          <div className="absolute bottom-0 z-[2] h-1/2 w-full bg-gradient-to-t from-black from-[1%]" />
-          <div className="absolute bottom-0 z-[3] flex w-full flex-col gap-1 p-3">
-            <div className="grid grid-cols-[1fr,auto] items-end justify-between gap-5">
+          <div className="absolute bottom-0 z-2 h-1/2 w-full bg-linear-to-t from-black from-1%" />
+          <div className="absolute bottom-0 z-3 flex w-full flex-col gap-1 p-3">
+            <div className="grid grid-cols-[1fr_auto] items-end justify-between gap-5">
               <h6 className="truncate text-sm font-semibold">{media.title}</h6>
               <p className="truncate text-xs">{timeAgo(media.updated_at)}</p>
             </div>

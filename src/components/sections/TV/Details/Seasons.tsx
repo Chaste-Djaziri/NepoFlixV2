@@ -38,10 +38,10 @@ const TvShowsSeasonsSelection = forwardRef<HTMLElement, Props>(({ id, seasons },
   );
 
   return (
-    <section ref={ref} id="seasons-episodes" className="z-[3] flex flex-col gap-2">
+    <section ref={ref} id="seasons-episodes" className="z-3 flex flex-col gap-2">
       <SectionTitle color="warning">Season & Episode</SectionTitle>
       <Card className="sm:p-3">
-        <CardHeader className="grid grid-cols-1 grid-rows-[1fr,auto] gap-3 md:grid-cols-[1fr,1fr,auto,auto]">
+        <CardHeader className="grid grid-cols-1 grid-rows-[1fr_auto] gap-3 md:grid-cols-[1fr_1fr_auto_auto]">
           <Select
             aria-label="Seasons"
             selectedKeys={[seasonNumber]}

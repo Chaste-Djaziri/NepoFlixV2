@@ -87,7 +87,7 @@ const SelectButton = <T extends string = string>({
           {label}
         </label>
       )}
-      {description && <p className="text-sm text-foreground-500">{description}</p>}
+      {description && <p className="text-foreground-500 text-sm">{description}</p>}
       <GroupComponent groupType={groupType} gap={gap}>
         {data.map((item, index) => {
           const selected = _value === item.value;
@@ -111,7 +111,7 @@ const SelectButton = <T extends string = string>({
           );
         })}
       </GroupComponent>
-      {error && <p className="text-sm text-danger">{error}</p>}
+      {error && <p className="text-danger text-sm">{error}</p>}
     </div>
   );
 };

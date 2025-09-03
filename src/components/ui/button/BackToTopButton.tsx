@@ -16,7 +16,7 @@ const BackToTopButton: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className={cn("fixed bottom-20 right-4 z-[9999] transition-opacity md:bottom-4")}>
+    <div className={cn("fixed bottom-20 right-4 z-9999 transition-opacity md:bottom-4")}>
       <IconButton
         onPress={scrollToTop}
         icon={<MdKeyboardArrowUp size={24} />}

@@ -100,7 +100,7 @@ export const EpisodeListCard: React.FC<EpisodeCardProps> = ({
       href={href}
       shadow="none"
       className={cn(
-        "group motion-preset-blur-right grid grid-cols-[auto,1fr] gap-3 border-2 border-foreground-200 bg-foreground-100 transition-colors motion-duration-300",
+        "group motion-preset-blur-right border-foreground-200 bg-foreground-100 motion-duration-300 grid grid-cols-[auto_1fr] gap-3 border-2 transition-colors",
         {
           "hover:border-warning hover:bg-foreground-200": !isNotReleased,
           "cursor-not-allowed opacity-50": isNotReleased,
@@ -119,7 +119,7 @@ export const EpisodeListCard: React.FC<EpisodeCardProps> = ({
         />
         {!isNotReleased && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+            <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 opacity-0 backdrop-blur-xs transition-opacity group-hover:opacity-100">
               <PlayOutline className="h-6 w-6 text-white" />
             </div>
           </div>
@@ -130,15 +130,15 @@ export const EpisodeListCard: React.FC<EpisodeCardProps> = ({
           size="sm"
           color={isNotReleased ? "warning" : undefined}
           variant={isNotReleased ? "shadow" : undefined}
-          className={cn("absolute right-2 top-2 z-20", {
-            "bg-black/35 backdrop-blur-sm": !isNotReleased,
+          className={cn("absolute top-2 right-2 z-20", {
+            "bg-black/35 backdrop-blur-xs": !isNotReleased,
           })}
         >
           {isNotReleased ? "Coming Soon" : movieDurationString(episode.runtime)}
         </Chip>
         <Chip
           size="sm"
-          className="absolute bottom-2 left-2 z-20 min-w-9 bg-black/35 text-center text-white backdrop-blur-sm"
+          className="absolute bottom-2 left-2 z-20 min-w-9 bg-black/35 text-center text-white backdrop-blur-xs"
         >
           {episode.episode_number}
         </Chip>
@@ -153,10 +153,10 @@ export const EpisodeListCard: React.FC<EpisodeCardProps> = ({
         >
           {episode.name}
         </p>
-        <p className="line-clamp-1 text-xs text-content4-foreground">
+        <p className="text-content4-foreground line-clamp-1 text-xs">
           {formatDate(episode.air_date, "en-US")}
         </p>
-        <p className="line-clamp-2 text-sm text-foreground-500" title={episode.overview}>
+        <p className="text-foreground-500 line-clamp-2 text-sm" title={episode.overview}>
           {episode.overview}
         </p>
       </CardBody>
@@ -178,7 +178,7 @@ const EpisodeGridCard: React.FC<EpisodeCardProps> = ({ episode, id }) => {
       href={href}
       shadow="none"
       className={cn(
-        "group motion-preset-focus border-2 border-foreground-200 bg-foreground-100 transition-colors",
+        "group motion-preset-focus border-foreground-200 bg-foreground-100 border-2 transition-colors",
         {
           "hover:border-warning hover:bg-foreground-200": !isNotReleased,
           "cursor-not-allowed opacity-50": isNotReleased,
@@ -194,7 +194,7 @@ const EpisodeGridCard: React.FC<EpisodeCardProps> = ({ episode, id }) => {
           />
           {!isNotReleased && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100">
+              <div className="z-10 flex h-12 w-12 items-center justify-center rounded-full bg-black/35 opacity-0 backdrop-blur-xs transition-opacity group-hover:opacity-100">
                 <PlayOutline className="h-6 w-6 text-white" />
               </div>
             </div>
@@ -203,15 +203,15 @@ const EpisodeGridCard: React.FC<EpisodeCardProps> = ({ episode, id }) => {
             size="sm"
             color={isNotReleased ? "warning" : undefined}
             variant={isNotReleased ? "shadow" : undefined}
-            className={cn("absolute right-2 top-2 z-20", {
-              "bg-black/35 backdrop-blur-sm": !isNotReleased,
+            className={cn("absolute top-2 right-2 z-20", {
+              "bg-black/35 backdrop-blur-xs": !isNotReleased,
             })}
           >
             {isNotReleased ? "Coming Soon" : movieDurationString(episode.runtime)}
           </Chip>
           <Chip
             size="sm"
-            className="absolute bottom-2 left-2 z-20 min-w-9 bg-black/35 text-center text-white backdrop-blur-sm"
+            className="absolute bottom-2 left-2 z-20 min-w-9 bg-black/35 text-center text-white backdrop-blur-xs"
           >
             {episode.episode_number}
           </Chip>
@@ -228,10 +228,10 @@ const EpisodeGridCard: React.FC<EpisodeCardProps> = ({ episode, id }) => {
           >
             {episode.name}
           </p>
-          <p className="line-clamp-1 text-xs text-content4-foreground">
+          <p className="text-content4-foreground line-clamp-1 text-xs">
             {formatDate(episode.air_date, "en-US")}
           </p>
-          <p className="text-sm text-foreground-500" title={episode.overview}>
+          <p className="text-foreground-500 text-sm" title={episode.overview}>
             {episode.overview}
           </p>
         </div>

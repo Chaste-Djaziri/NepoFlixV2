@@ -1,7 +1,6 @@
-/** @type {import('next').NextConfig} */
-
 import withPWAInit from "@ducanh2912/next-pwa";
-import { hostname } from "os";
+
+import { NextConfig } from "next/dist/server/config";
 
 const withPWA = withPWAInit({
   dest: "public",
@@ -11,13 +10,17 @@ const withPWA = withPWAInit({
   cacheOnFrontEndNav: true,
   aggressiveFrontEndNavCaching: true,
   workboxOptions: {
-    disableDevLogs: true
-  }
+    disableDevLogs: true,
+  },
 });
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   eslint: {
-    ignoreDuringBuilds: false
+    ignoreDuringBuilds: false,
+  },
+  // https://github.com/payloadcms/payload/issues/12550#issuecomment-2939070941
+  turbopack: {
+    resolveExtensions: [".mdx", ".tsx", ".ts", ".jsx", ".js", ".mjs", ".json"],
   },
   images: {
     domains: ["image.tmdb.org"],

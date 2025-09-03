@@ -12,7 +12,7 @@ const RelatedSection: React.FC<{
   const similar = movie.similar.results as Movie[];
 
   return (
-    <section id="related" className="z-[3]">
+    <section id="related" className="z-3">
       <SectionTitle className="mb-2 sm:mb-0 sm:translate-y-10">You may like</SectionTitle>
       <Tabs
         aria-label="Related Section"

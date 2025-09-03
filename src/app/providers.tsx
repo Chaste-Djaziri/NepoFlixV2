@@ -8,13 +8,15 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProgressProvider as ProgressProvider } from "@bprogress/next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { usePathname, useRouter } from "next/navigation";
+import useDiscoverFilters from "@/hooks/useDiscoverFilters";
 
 export const queryClient = new QueryClient();
 
 export default function Providers({ children }: PropsWithChildren) {
   const { push } = useRouter();
   const pathName = usePathname();
-  const tv = pathName.includes("/tv/");
+  const { content } = useDiscoverFilters();
+  const tv = pathName.includes("/tv/") || content === "tv";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -34,14 +36,15 @@ export default function Providers({ children }: PropsWithChildren) {
           }}
         />
         <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem>
-          <NuqsAdapter>
-            {/* NOTE: https://github.com/vercel/next.js/discussions/61654 */}
-            <Suspense>
-              <ProgressProvider color={tv ? "#f5a524" : "#006fee"} options={{ showSpinner: false }}>
-                {children}
-              </ProgressProvider>
-            </Suspense>
-          </NuqsAdapter>
+          {/* https://github.com/vercel/next.js/discussions/61654#discussioncomment-8480088 */}
+          <Suspense>
+            <ProgressProvider
+              options={{ showSpinner: false }}
+              color={`hsl(var(--heroui-${tv ? "warning" : "primary"}))`}
+            >
+              {children}
+            </ProgressProvider>
+          </Suspense>
         </NextThemesProvider>
       </HeroUIProvider>
       <div className="hidden md:block">

@@ -36,6 +36,7 @@ type AuthAction<T> = (data: T, supabase: SupabaseClient) => AuthResponse;
 const createAuthAction = <T extends { captchaToken?: string }>(
   schema: z.ZodSchema<T>,
   action: AuthAction<T>,
+  admin?: boolean,
 ) => {
   return async (formData: T): AuthResponse => {
     const result = schema.safeParse(formData);
@@ -49,7 +50,7 @@ const createAuthAction = <T extends { captchaToken?: string }>(
     }
 
     try {
-      const supabase = await createClient();
+      const supabase = await createClient(admin);
       return await action(result.data, supabase);
     } catch (error) {
       // Catch potential unhandled errors in actions
@@ -164,7 +165,7 @@ const resetPasswordAction: AuthAction<ResetPasswordFormInput> = async (data, sup
 };
 
 export const signIn = createAuthAction(LoginFormSchema, signInWithEmailAction);
-export const signUp = createAuthAction(RegisterFormSchema, signUpAction);
+export const signUp = createAuthAction(RegisterFormSchema, signUpAction, true);
 export const sendResetPasswordEmail = createAuthAction(
   ForgotPasswordFormSchema,
   sendResetPasswordEmailAction,

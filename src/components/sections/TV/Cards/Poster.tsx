@@ -49,7 +49,7 @@ const TvShowPosterCard: React.FC<TvShowPosterCardProps> = ({ tv, variant = "full
       >
         <Link href={`/tv/${tv.id}`} ref={ref} {...longPress()}>
           {variant === "full" && (
-            <div className="group motion-preset-focus relative aspect-[2/3] overflow-hidden rounded-lg border-[3px] border-transparent text-white transition-colors hover:border-warning">
+            <div className="group motion-preset-focus relative aspect-2/3 overflow-hidden rounded-lg border-[3px] border-transparent text-white transition-colors hover:border-warning">
               {hovered && (
                 <Icon
                   icon="line-md:play-filled"
@@ -68,8 +68,8 @@ const TvShowPosterCard: React.FC<TvShowPosterCardProps> = ({ tv, variant = "full
                   18+
                 </Chip>
               )}
-              <div className="absolute bottom-0 z-[2] h-1/2 w-full bg-gradient-to-t from-black from-[1%]"></div>
-              <div className="absolute bottom-0 z-[3] flex w-full flex-col gap-1 px-4 py-3">
+              <div className="absolute bottom-0 z-2 h-1/2 w-full bg-linear-to-t from-black from-1%"></div>
+              <div className="absolute bottom-0 z-3 flex w-full flex-col gap-1 px-4 py-3">
                 <h6 className="truncate text-sm font-semibold">{title}</h6>
                 <div className="flex justify-between text-xs">
                   <p>{releaseYear}</p>
@@ -80,7 +80,7 @@ const TvShowPosterCard: React.FC<TvShowPosterCardProps> = ({ tv, variant = "full
                 alt={title}
                 src={posterImage}
                 radius="none"
-                className="z-0 aspect-[2/3] h-[250px] object-cover object-center transition group-hover:scale-110 md:h-[300px]"
+                className="z-0 aspect-2/3 h-[250px] object-cover object-center transition group-hover:scale-110 md:h-[300px]"
                 classNames={{
                   img: "group-hover:opacity-70",
                 }}
@@ -119,7 +119,7 @@ const TvShowPosterCard: React.FC<TvShowPosterCardProps> = ({ tv, variant = "full
                     <Image
                       isBlurred
                       alt={title}
-                      className="aspect-[2/3] rounded-lg object-cover object-center group-hover:scale-110"
+                      className="aspect-2/3 rounded-lg object-cover object-center group-hover:scale-110"
                       src={posterImage}
                     />
                   </div>

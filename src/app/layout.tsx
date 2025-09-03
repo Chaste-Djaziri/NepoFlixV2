@@ -13,6 +13,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { cn } from "@/utils/helpers";
 import { IS_PRODUCTION, SpacingClasses } from "@/utils/constants";
 import dynamic from "next/dynamic";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Suspense } from "react";
 
 const Disclaimer = dynamic(() => import("@/components/ui/overlay/Disclaimer"));
 
@@ -47,29 +49,21 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={cn("min-h-screen select-none bg-background antialiased", Poppins.className)}>
-        <Providers>
-          {IS_PRODUCTION && <Disclaimer />}
-
-          {/* Mobile-only spacer so the top bar starts below iOS Safari/PWA chrome */}
-          <div className="block md:hidden h-[env(safe-area-inset-top,0px)]" />
-
-          {/* Top navigation */}
-          <TopNavbar />
-
-          {/* Main content */}
-          <main className={cn("container mx-auto max-w-full px-3 py-8 sm:px-5", SpacingClasses.main)}>
-            {children}
-          </main>
-
-          {/* Bottom navigation */}
-          <BottomNavbar />
-
-          {/* Footer */}
-          <Footer className="mt-8 md:mt-12" />
-        </Providers>
-
-        {/* Analytics / speed insights */}
+      <body className={cn("bg-background min-h-dvh antialiased select-none", Poppins.className)}>
+        <Suspense>
+          <NuqsAdapter>
+            <Providers>
+              {IS_PRODUCTION && <Disclaimer />}
+              <TopNavbar />
+              <Sidebar>
+                <main className={cn("container mx-auto max-w-full", SpacingClasses.main)}>
+                  {children}
+                </main>
+              </Sidebar>
+              <BottomNavbar />
+            </Providers>
+          </NuqsAdapter>
+        </Suspense>
         <SpeedInsights debug={false} />
         <Analytics debug={false} />
       </body>

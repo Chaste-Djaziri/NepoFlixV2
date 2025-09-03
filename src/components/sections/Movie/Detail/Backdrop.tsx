@@ -15,13 +15,13 @@ const BackdropSection: React.FC<{
   return (
     <section id="backdrop" className="fixed inset-0 h-[35vh] md:h-[50vh] lg:h-[70vh]">
       <div className="absolute inset-0 z-10 bg-background" style={{ opacity: opacity }} />
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-background from-[1%] via-transparent via-30%" />
-      <div className="absolute inset-0 z-[2] translate-y-px bg-gradient-to-t from-background from-[1%] via-transparent via-55%" />
+      <div className="absolute inset-0 z-2 bg-linear-to-b from-background from-1% via-transparent via-30%" />
+      <div className="absolute inset-0 z-2 translate-y-px bg-linear-to-t from-background from-1% via-transparent via-55%" />
       <Image
         isBlurred
         radius="none"
         alt={movie?.original_language === "id" ? movie?.original_title : movie?.title}
-        classNames={{ wrapper: "absolute-center z-[1] bg-transparent" }}
+        classNames={{ wrapper: "absolute-center z-1 bg-transparent" }}
         className="w-[25vh] max-w-80 drop-shadow-xl md:w-[60vh]"
         src={titleImage}
       />
