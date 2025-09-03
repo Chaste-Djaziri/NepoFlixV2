@@ -13,6 +13,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import { cn } from "@/utils/helpers";
 import { IS_PRODUCTION, SpacingClasses } from "@/utils/constants";
+import Chrome from "@/components/ui/layout/Chrome";
 
 const Disclaimer = dynamic(() => import("@/components/ui/overlay/Disclaimer"));
 
@@ -54,17 +55,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       >
         <Providers>
           {IS_PRODUCTION && <Disclaimer />}
-
           <div className="block md:hidden h-[env(safe-area-inset-top,0px)]" />
 
-          <TopNavbar />
-
-          <main className={cn("container mx-auto max-w-full px-3 py-8 sm:px-5", SpacingClasses.main)}>
-            {children}
-          </main>
-
-          <BottomNavbar />
-          <Footer className="mt-8 md:mt-12" />
+          {/* ✅ Use Chrome to conditionally render nav/footer based on pathname */}
+          <Chrome>{children}</Chrome>
         </Providers>
 
         <SpeedInsights debug={false} />

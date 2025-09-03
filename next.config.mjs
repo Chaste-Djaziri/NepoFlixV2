@@ -21,6 +21,16 @@ const nextConfig = {
   },
   images: {
     domains: ["image.tmdb.org"],
+    remotePatterns: [
+      // MyAnimeList / Jikan images
+      { protocol: "https", hostname: "cdn.myanimelist.net" },
+
+      // (Optional) other anime sources you might hit later
+      { protocol: "https", hostname: "i.ytimg.com" },          // trailers thumbnails
+      { protocol: "https", hostname: "s4.anilist.co" },        // anilist images (if you add it)
+      { protocol: "https", hostname: "media.kitsu.io" },       // kitsu images (if you add it)
+      { protocol: "https", hostname: "img.youtube.com" }       // alt trailer thumbs
+    ],
   }
 };
 

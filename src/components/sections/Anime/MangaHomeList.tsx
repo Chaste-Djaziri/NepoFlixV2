@@ -1,22 +1,34 @@
-// src/components/sections/TV/HomeList.tsx
-
 "use client";
 
-import TvShowHomeCard from "@/components/sections/TV/Cards/Poster";
 import SectionTitle from "@/components/ui/other/SectionTitle";
 import Carousel from "@/components/ui/wrapper/Carousel";
-import { QueryList } from "@/types";
 import { Link, Skeleton } from "@heroui/react";
 import { useInViewport } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
 import { kebabCase } from "string-ts";
-import { TV } from "tmdb-ts/dist/types";
+import AnimePosterCard from "@/components/sections/Anime/Cards/Poster";
 
-const TvShowHomeList: React.FC<QueryList<TV>> = ({ query, name, param }) => {
+type Kind = "manga" | "bypopularity" | "favorite";
+
+async function fetcher(kind: Kind) {
+  const BASE = "https://api.jikan.moe/v4";
+  if (kind === "manga") {
+    const r = await fetch(`${BASE}/top/manga?type=manga`);
+    return (await r.json())?.data ?? [];
+  }
+  if (kind === "bypopularity") {
+    const r = await fetch(`${BASE}/top/manga?filter=bypopularity`);
+    return (await r.json())?.data ?? [];
+  }
+  const r = await fetch(`${BASE}/top/manga?filter=favorite`);
+  return (await r.json())?.data ?? [];
+}
+
+export default function MangaHomeList({ name, param, kind }: { name: string; param: string; kind: Kind }) {
   const key = kebabCase(name) + "-list";
   const { ref, inViewport } = useInViewport();
   const { data, isPending } = useQuery({
-    queryFn: query,
+    queryFn: () => fetcher(kind),
     queryKey: [key],
     enabled: inViewport,
   });
@@ -37,7 +49,7 @@ const TvShowHomeList: React.FC<QueryList<TV>> = ({ query, name, param }) => {
             <SectionTitle color="warning">{name}</SectionTitle>
             <Link
               size="sm"
-              href={`/discover?type=${param}&content=tv`}
+              href={`/anime/list/${param}`}
               isBlock
               color="foreground"
               className="rounded-full"
@@ -46,12 +58,9 @@ const TvShowHomeList: React.FC<QueryList<TV>> = ({ query, name, param }) => {
             </Link>
           </div>
           <Carousel>
-            {data?.results.map((tv) => (
-              <div
-                key={tv.id}
-                className="embla__slide flex min-h-fit max-w-fit items-center px-1 py-2"
-              >
-                <TvShowHomeCard tv={tv} />
+            {(data ?? []).map((m: any) => (
+              <div key={m.mal_id} className="embla__slide flex min-h-fit max-w-fit items-center px-1 py-2">
+                <AnimePosterCard anime={m} />
               </div>
             ))}
           </Carousel>
@@ -59,6 +68,4 @@ const TvShowHomeList: React.FC<QueryList<TV>> = ({ query, name, param }) => {
       )}
     </section>
   );
-};
-
-export default TvShowHomeList;
+}

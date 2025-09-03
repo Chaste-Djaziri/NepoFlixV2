@@ -1,3 +1,5 @@
+// src/components/sections/Movie/HomeList.tsx
+
 "use client";
 
 import MoviePosterCard from "@/components/sections/Movie/Cards/Poster";
