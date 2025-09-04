@@ -1,14 +1,29 @@
-"use client";
-export default function AnimeAboutPage() {
+import { FaGithub } from "react-icons/fa6";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { NextPage } from "next";
+const FAQ = dynamic(() => import("@/components/sections/About/FAQ"));
+
+export const metadata: Metadata = {
+  title: `About | ${siteConfig.name}`,
+};
+
+const AboutPage: NextPage = () => {
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
-      <h1 className="text-2xl font-bold">About NepoFlix Anime</h1>
-      <p className="text-sm leading-6">
-        This section uses the public Jikan REST API (an unofficial MyAnimeList API) to fetch anime and manga data.
-      </p>
-      <p className="text-sm leading-6">
-        Features include seasonal browsing, top airing/upcoming lists, search, details with characters & recommendations, and a manga view.
-      </p>
+    <div className="flex w-full justify-center">
+      <div className="flex w-full max-w-2xl flex-col gap-5">
+        <Suspense>
+          <FAQ />
+        </Suspense>
+        <Link target="_blank" href={siteConfig.socials.github} className="flex justify-center">
+          <FaGithub size={30} />
+        </Link>
+      </div>
     </div>
   );
-}
+};
+
+export default AboutPage;

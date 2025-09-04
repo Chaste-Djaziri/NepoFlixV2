@@ -1,3 +1,5 @@
+// src/components/ui/other/PhotoSection.tsx
+
 import { Image as ImageProps } from "tmdb-ts";
 import { Image } from "@heroui/react";
 import { getImageUrl } from "@/utils/movies";

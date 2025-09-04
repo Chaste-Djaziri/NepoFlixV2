@@ -1,4 +1,5 @@
 // src/components/ui/other/SearchFloatingBar.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";

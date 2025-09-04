@@ -1,4 +1,6 @@
+// src/config/animeSite.tsx
 import { Film, BookOpen, Dice6, Search, ChevronDown } from "lucide-react";
+import { jikan } from "@/api/jikan";
 
 export const animeSiteConfig = {
   name: "NepoFlix · Anime",
@@ -9,14 +11,12 @@ export const animeSiteConfig = {
     twitter: "",
     instagram: "",
   },
-  // Top-level nav (desktop) + used by bottom bar on mobile
   navItems: [
     { label: "Home", href: "/anime", icon: <Film className="h-5 w-5" />, activeIcon: <Film className="h-5 w-5" /> },
     { label: "Random", href: "/anime/random", icon: <Dice6 className="h-5 w-5" />, activeIcon: <Dice6 className="h-5 w-5" /> },
-    { label: "Manga", href: "/anime?content=manga", icon: <BookOpen className="h-5 w-5" />, activeIcon: <BookOpen className="h-5 w-5" /> },
+    { label: "Manga", href: "/anime/manga", icon: <BookOpen className="h-5 w-5" />, activeIcon: <BookOpen className="h-5 w-5" /> },
     { label: "Search", href: "/anime/search", icon: <Search className="h-5 w-5" />, activeIcon: <Search className="h-5 w-5" /> },
   ],
-  // "More" menu
   moreItems: [
     { label: "Dubbed", href: "/anime/discover?audio=dub" },
     { label: "Subbed", href: "/anime/discover?audio=sub" },
@@ -30,8 +30,27 @@ export const animeSiteConfig = {
     { label: "Top Airing", href: "/anime/list/airing" },
     { label: "Upcoming", href: "/anime/list/upcoming" },
   ],
-  // header utility icons
   headerIcons: {
     more: <ChevronDown className="h-4 w-4" />,
+  },
+  /** NEW: lists used by the anime homepage */
+  queryLists: {
+    movies: [
+      { name: "Top Anime Movies", param: "movies", query: jikan.movies },
+      { name: "Popular (All)", param: "popular", query: jikan.popular },
+      { name: "Top Rated (All)", param: "top", query: jikan.topRated },
+      { name: "Favorites", param: "favorites", query: jikan.favorites },
+      { name: "Specials", param: "special", query: jikan.special },
+      { name: "OVAs", param: "ova", query: jikan.ova },
+      { name: "ONAs", param: "ona", query: jikan.ona },
+    ],
+    tvShows: [
+      { name: "Top Airing", param: "airing", query: jikan.airingNow },
+      { name: "Upcoming Season", param: "upcoming", query: jikan.upcoming },
+      { name: "Top TV Series", param: "tv", query: jikan.tvSeries },
+      { name: "Popular (All)", param: "popular", query: jikan.popular },
+      { name: "Top Rated (All)", param: "top", query: jikan.topRated },
+      { name: "Favorites", param: "favorites", query: jikan.favorites },
+    ],
   },
 } as const;

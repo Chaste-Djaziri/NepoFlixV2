@@ -1,3 +1,5 @@
+// src/components/ui/other/Genres.tsx
+
 import { ContentType } from "@/types";
 import { Chip, Link, ChipProps } from "@heroui/react";
 import { Genre } from "tmdb-ts";

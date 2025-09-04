@@ -1,3 +1,5 @@
+// src/components/ui/other/SectionTitle.tsx
+
 import { colors, ColorType } from "@/types/component";
 import { cn } from "@/utils/helpers";
 import { tv } from "tailwind-variants";
