@@ -1,3 +1,14 @@
+// src/types/anime.ts
+export type AnimeListItem = {
+  id: number;
+  title: string;
+  imageUrl: string;
+  year?: number;
+  rating?: number;
+  type: "movie" | "tv";
+};
+
+
 export interface JikanImage {
   image_url?: string;
   large_image_url?: string;

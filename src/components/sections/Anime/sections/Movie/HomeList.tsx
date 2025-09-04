@@ -1,4 +1,3 @@
-// src/components/sections/Anime/sections/Movie/HomeList.tsx
 "use client";
 
 import SectionTitle from "@/components/ui/other/SectionTitle";
@@ -8,7 +7,10 @@ import { useInViewport } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
 import { kebabCase } from "string-ts";
 import AnimePosterCard from "@/components/sections/Anime/sections/Movie/Cards/Poster";
-import type { AnimeListItem } from "@/api/jikan";
+
+// Types: Jikan inbound, UI outbound
+import type { AnimeListItem as JikanAnimeItem } from "@/api/jikan";
+import type { AnimeListItem as UiAnimeItem } from "@/types/anime";
 
 type QueryList<T = any> = {
   query: () => Promise<{ results: T[] }>;
@@ -16,7 +18,7 @@ type QueryList<T = any> = {
   param: string;
 };
 
-const AnimeMovieHomeList: React.FC<QueryList<AnimeListItem>> = ({ query, name, param }) => {
+const AnimeMovieHomeList: React.FC<QueryList<JikanAnimeItem>> = ({ query, name, param }) => {
   const key = kebabCase(name) + "-list";
   const { ref, inViewport } = useInViewport();
   const { data, isPending } = useQuery({
@@ -50,11 +52,43 @@ const AnimeMovieHomeList: React.FC<QueryList<AnimeListItem>> = ({ query, name, p
             </Link>
           </div>
           <Carousel>
-            {data?.results.map((item) => (
-              <div key={item.id} className="embla__slide flex min-h-fit max-w-fit items-center px-1 py-2">
-                <AnimePosterCard item={item} />
-              </div>
-            ))}
+            {data?.results.map((raw) => {
+              // Normalize Jikan -> UI card shape
+              const item: UiAnimeItem = {
+                id: (raw as any).id ?? (raw as any).mal_id,
+                title:
+                  (raw as any).title ??
+                  (raw as any).title_english ??
+                  (raw as any).title_japanese ??
+                  "Untitled",
+                imageUrl:
+                  (raw as any).imageUrl ??
+                  (raw as any).images?.jpg?.image_url ??
+                  "/placeholder.png",
+                year:
+                  (raw as any).year ??
+                  ((raw as any).aired?.from
+                    ? new Date((raw as any).aired.from).getFullYear()
+                    : undefined),
+                rating: (raw as any).score ?? 0,
+                // force movie here because this is the Movie list
+                type:
+                  String((raw as any).type ?? "")
+                    .toLowerCase()
+                    .includes("movie")
+                    ? "movie"
+                    : "movie",
+              };
+
+              return (
+                <div
+                  key={item.id}
+                  className="embla__slide flex min-h-fit max-w-fit items-center px-1 py-2"
+                >
+                  <AnimePosterCard item={item} />
+                </div>
+              );
+            })}
           </Carousel>
         </div>
       )}
