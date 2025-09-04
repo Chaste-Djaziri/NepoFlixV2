@@ -56,7 +56,7 @@ const TvShowDiscoverList = () => {
       <div className="movie-grid">
         {data.pages.map((page) => {
           return page.results.map((tv) => {
-            return <TvShowPosterCard key={tv.id} tv={tv} variant="bordered" />;
+            return <TvShowPosterCard key={tv.id} item={tv} variant="bordered" />;
           });
         })}
       </div>
