@@ -1,4 +1,3 @@
-// src/components/sections/Anime/ui/layout/BottomNavbarAnime.tsx
 "use client";
 
 import { animeSiteConfig } from "@/config/animeSite";
@@ -11,8 +10,9 @@ const BAR_HEIGHT_PX = 56;
 
 const BottomNavbarAnime = () => {
   const pathName = usePathname();
-  const hrefs = animeSiteConfig.navItems.map((item) => item.href);
-  const show = hrefs.includes(pathName);
+
+  // Use .some to avoid the string-literal union issue with .includes
+  const show = animeSiteConfig.navItems.some((item) => item.href === pathName);
 
   if (!show) return null;
 
@@ -21,9 +21,7 @@ const BottomNavbarAnime = () => {
       <div
         aria-hidden
         className="md:hidden"
-        style={{
-          height: `calc(${BAR_HEIGHT_PX}px + env(safe-area-inset-bottom, 0px))`,
-        }}
+        style={{ height: `calc(${BAR_HEIGHT_PX}px + env(safe-area-inset-bottom, 0px))` }}
       />
       <nav
         className={clsx(

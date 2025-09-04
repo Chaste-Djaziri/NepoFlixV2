@@ -1,4 +1,3 @@
-// src/components/sections/Anime/ui/layout/TopNavbarAnime.tsx
 "use client";
 
 import { animeSiteConfig } from "@/config/animeSite";
@@ -19,10 +18,10 @@ const TopNavbarAnime = () => {
   const [{ y }] = useWindowScroll();
   const opacity = Math.min((y / 1000) * 5, 1);
 
-  const hrefs = animeSiteConfig.navItems.map((item) => item.href);
-  const show = hrefs.includes(pathName);
-  const player = pathName.includes("/anime/player");
-  const auth = pathName.includes("/auth");
+  // Avoid .includes typing pitfall
+  const show = animeSiteConfig.navItems.some((item) => item.href === pathName);
+  const player = pathName.startsWith("/anime/") && pathName.includes("/player");
+  const auth = pathName.startsWith("/auth");
 
   if (auth || player) return null;
 
